@@ -141,18 +141,18 @@ with tab2:
     feature_imp_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
     feature_imp_df = feature_imp_df.sort_values(by='Importance', ascending=False)
     
-    # Reduced graph size here
     fig, ax = plt.subplots(figsize=(7, 4))
     sns.barplot(x='Importance', y='Feature', data=feature_imp_df, palette='viridis', ax=ax)
     ax.set_title("Random Forest Feature Importance")
-    st.pyplot(fig)
+    
+    # Explicitly tell Streamlit NOT to stretch the image
+    st.pyplot(fig, use_container_width=False)
 
 # --- TAB 3: PROBABILITY DISTRIBUTION ---
 with tab3:
     st.subheader("System-Wide Risk Distribution")
     st.write("Visualizing the spread of predicted churn probabilities across the tested customer base.")
     
-    # Reduced graph size here
     fig2, ax2 = plt.subplots(figsize=(7, 4))
     sns.histplot(test_probs, bins=30, kde=True, color='purple', ax=ax2)
     ax2.set_title("Distribution of Customer Churn Probabilities")
@@ -161,4 +161,6 @@ with tab3:
     ax2.axvline(x=0.3, color='green', linestyle='--', label='Low Risk Threshold (30%)')
     ax2.axvline(x=0.7, color='red', linestyle='--', label='High Risk Threshold (70%)')
     ax2.legend()
-    st.pyplot(fig2)
+    
+    # Explicitly tell Streamlit NOT to stretch the image
+    st.pyplot(fig2, use_container_width=False)
