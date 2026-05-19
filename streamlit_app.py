@@ -141,7 +141,8 @@ with tab2:
     feature_imp_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
     feature_imp_df = feature_imp_df.sort_values(by='Importance', ascending=False)
     
-    fig, ax = plt.subplots(figsize=(10, 6))
+    # Reduced graph size here
+    fig, ax = plt.subplots(figsize=(7, 4))
     sns.barplot(x='Importance', y='Feature', data=feature_imp_df, palette='viridis', ax=ax)
     ax.set_title("Random Forest Feature Importance")
     st.pyplot(fig)
@@ -151,7 +152,8 @@ with tab3:
     st.subheader("System-Wide Risk Distribution")
     st.write("Visualizing the spread of predicted churn probabilities across the tested customer base.")
     
-    fig2, ax2 = plt.subplots(figsize=(10, 5))
+    # Reduced graph size here
+    fig2, ax2 = plt.subplots(figsize=(7, 4))
     sns.histplot(test_probs, bins=30, kde=True, color='purple', ax=ax2)
     ax2.set_title("Distribution of Customer Churn Probabilities")
     ax2.set_xlabel("Churn Risk Score (Probability)")
